@@ -2,13 +2,15 @@
 
 /* 
  * 七彩背景颜色并不断动态变化
+ * element: 选择器
  * colorful: 颜色鲜艳度 (从ff-00越来越鲜艳，ff为一片空白)
  * angle: 角度 (to top, to bottom, to left, to right, 135deg, to top right...)
  * speed: 变化速度 (slow, normal, fast)
 */
-function colorfulAnimate(colorful, angle, speed)
+function colorfulAnimate(element, colorful, angle, speed)
 {
   //缺省参数
+  element = element || "body";
   colorful = colorful || "bb";
   angle = angle || "to top";
   speed = speed || "normal";
@@ -52,7 +54,7 @@ function colorfulAnimate(colorful, angle, speed)
       linear += ", rgb(" + c[i][0] + ", " + c[i][1] + ", " + c[i][2] + ") " + i*20 + "%";
     linear += ")";
 
-    $("body").css("background", linear);
+    $(element).css("background", linear);
   }
   setInterval(function() {colorAnimate();}, speedNum[speed]);
 
