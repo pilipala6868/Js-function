@@ -1,0 +1,24 @@
+
+#clock {
+	height: 300px;
+	width: 300px;
+	border-radius: 100%;
+	margin: 10px 10px;
+	background-color: #ffc;
+	z-index: 2;
+}
+
+
+svg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 5px;
+	left: 5px;
+	z-index: 1;
+}
+polyline {
+	fill: none;
+	stroke: #007bff;
+	stroke-width: 10px;
+}
