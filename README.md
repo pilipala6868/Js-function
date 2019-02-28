@@ -3,3 +3,4 @@
 * colorful-linear-animate -> 七彩变化背景 —— 2018.08.13
 * timer-outerline -> SVG制作秒表外圈的走动效果 —— 2018.08.19
 * slider -> 轮播图(网易云桌面客户端样式) —— 2019.01.28
+* slider-mobile -> 移调端轮播图(网易云音乐手机端样式) —— 2019.02.28
