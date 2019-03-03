@@ -3,6 +3,7 @@
 	width: 				100%;
 	text-align: 		center;
 	margin: 			10px auto;
+	overflow:			hidden;
 }
 
 .slideBox {
@@ -49,5 +50,4 @@
 }
 .slideBt .lightUp {
 	background-color:   #b6627c;
-	background-color:   var(--mainColor);
 }

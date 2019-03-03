@@ -8,10 +8,11 @@ function goSlide(sliderSpeed = 4000)
     //轮播盒宽高度设定
     var iWidth = window.innerWidth;  //页面宽度
     $('.slider').width(iWidth);
-    $('.slideBox').height(iWidth * 0.33);
+    $('.slider, .slideBox').height((iWidth-20) * 0.33);
     var imgSum = $('.slideImg').length;  //轮播图总数
-    $('.slideBox').width(iWidth * imgSum);
-    $('.slideBox div').width(iWidth - 20);
+    $('.slideBox').width(iWidth * 3);
+    $('.slideBox div').width(iWidth - $('.slideImg img').css('margin-left').slice(0, -2)*2);
+
     //slideImg几个类的left值给定
     var tempStyle = "<style type='text/css'>\
         .slideImg1 { left: " + -iWidth + "px; }\
@@ -37,6 +38,35 @@ function goSlide(sliderSpeed = 4000)
     }
     slideBtUpdate();
 
+
+    //检测滑动事件
+    $('.slideBox').on('touchstart', function(e) {
+        startX = e.touches[0].screenX;
+        newTouch = true;  //新触摸，否则可能一次触摸造成多次图片移动
+    })
+    $('.slideBox').on('touchmove', function(e) {
+        movingX = e.touches[0].screenX;
+        if (newTouch)
+        {
+            //左滑
+            if (startX - movingX > 80)
+            {
+                newTouch = false;
+                swipeleftFunc();
+                clearInterval(slideGo);
+                slideGo = setInterval(swipeleftFunc, sliderSpeed);
+            }
+            //右滑
+            else if (movingX - startX > 80)
+            {
+                newTouch = false;
+                swiperightFunc();
+                clearInterval(slideGo);
+                slideGo = setInterval(swipeleftFunc, sliderSpeed);
+            }
+        }
+    });
+
     //左移
     function swipeleftFunc()
     {
@@ -52,12 +82,6 @@ function goSlide(sliderSpeed = 4000)
         //下方圆点变化
         slideBtUpdate();
     }
-    //左移绑定
-    $('.slideBox').on("swipeleft", function() {
-        swipeleftFunc();
-        clearInterval(slideGo);
-        slideGo = setInterval(swipeleftFunc, sliderSpeed);
-    });
 
     //右移
     function swiperightFunc()
@@ -74,10 +98,4 @@ function goSlide(sliderSpeed = 4000)
         //下方圆点变化
         slideBtUpdate();
     }
-    //右移绑定
-    $('.slideBox').on("swiperight", function() {
-        swiperightFunc();
-        clearInterval(slideGo);
-        slideGo = setInterval(swipeleftFunc, sliderSpeed);
-    });
 }
