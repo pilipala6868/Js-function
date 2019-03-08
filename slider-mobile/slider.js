@@ -1,7 +1,5 @@
 
-$(document).ready(function() {
-    goSlide(3000);
-});
+goSlide();
 
 function goSlide(sliderSpeed = 4000)
 {
